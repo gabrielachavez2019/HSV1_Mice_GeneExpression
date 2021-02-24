@@ -14,7 +14,7 @@ This pipeline performs the following tasks:
 ## Download
 Use git clone:
 ```bash
-git clone git@github.com:HSV1_Mice_GeneExpression/RNASeq.git
+git clone git@github.com:gabrielachavez2019/HSV1_Mice_GeneExpression.git
 ```
 
 ## Installation
