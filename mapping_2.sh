@@ -28,12 +28,14 @@ module load bowtie2/2.3.4.1 fastqc/0.11.7 samtools/1.10 trimmomatic/0.38 cufflin
 #cat /scratch/gatoo/SecNGS/LIB109085_S*_R1_001.fastq.gz >> /scratch/gatoo/HSV1-mouse/Male-WT_F.fastq.gz
 #cat /scratch/gatoo/SecNGS/LIB109085_S*_R2_001.fastq.gz >> /scratch/gatoo/HSV1-mouse/Male-WT_R.fastq.gz
 
-#BoHSV1-cow
-#For this part you need to be in /home/gatoo/HSV1-mouse
-#echo Finishing full size library files...
+#echo Finishing building full size library files...
+
+##For this part you need to be in /home/gatoo/HSV1-mouse
+
 #echo Bulding HSV1 genome ...
 
-#Must run from  /scratch/gatoo/HSV1-mouse/ 
+##Must run from  /scratch/gatoo/HSV1-mouse/ 
+
 #bowtie2-build /scratch/gatoo/HSV1-mouse/HSV1.fasta HSV1
 
 names='Fem-dLAT Fem-WT Fem-U1
@@ -41,14 +43,19 @@ names='Fem-dLAT Fem-WT Fem-U1
 
 for name in $names
  do
-  echo Starting mapping of "$name"  against the mouse genome
-  #echo Starting mapping of "$name" against the virus
+   echo Starting mapping of "$name"  against the mouse genome
+  
+      tophat2 --num-threads 32 -o /scratch/gatoo/HSV1-mouse/output_"$name"  -G /scratch/gatoo/Mus_musculus/UCSC/mm10/Annotation/Genes/genes.gtf --transcriptome-index /scratch/gatoo/Mus_musculus/UCSC/mm10/Annotation/Genes/ --read-edit-dist 2 --read-gap-length 2 --read-mismatches 2 --read-realign-edit-dist 1 --library-type fr-unstranded --min-intron-length 50 --max-intron-length 300000 /scratch/gatoo/Mus_musculus/UCSC/mm10/Sequence/Bowtie2Index/genome /scratch/gatoo/HSV1-mouse/"$name"_F.fastq.gz /scratch/gatoo/HSV1-mouse/"$name"_R.fastq.gz
 
-#tophat2 --num-threads 32 -o /scratch/gatoo/HSV1-mouse/output_"$name"  -G /scratch/gatoo/Mus_musculus/UCSC/mm10/Annotation/Genes/genes.gtf --transcriptome-index /scratch/gatoo/Mus_musculus/UCSC/mm10/Annotation/Genes/ --read-edit-dist 2 --read-gap-length 2 --read-mismatches 2 --read-realign-edit-dist 1 --library-type fr-unstranded --min-intron-length 50 --max-intron-length 300000 /scratch/gatoo/Mus_musculus/UCSC/mm10/Sequence/Bowtie2Index/genome /scratch/gatoo/HSV1-mouse/"$name"_F.fastq.gz /scratch/gatoo/HSV1-mouse/"$name"_R.fastq.gz
+   echo Starting mapping of "$name" against the virus
 
-#tophat2 --num-threads 32 -o /scratch/gatoo/HSV1-mouse/output_HSV1_"$name" /scratch/gatoo/HSV1-mouse/HSV1 /scratch/gatoo/HSV1-mouse/"$name"_F.fastq.gz /scratch/gatoo/HSV1-mouse/"$name"_R.fastq.gz
+      tophat2 --num-threads 32 -o /scratch/gatoo/HSV1-mouse/output_HSV1_"$name" /scratch/gatoo/HSV1-mouse/HSV1 /scratch/gatoo/HSV1-mouse/"$name"_F.fastq.gz /scratch/gatoo/HSV1-mouse/"$name"_R.fastq.gz
 
-#cufflinks --num-threads 32 -o /scratch/gatoo/HSV1-mouse/output_cuff_HSV1_"$name" --multi-read-correct -G /scratch/gatoo/HSV1-mouse/HSV1.gff3 /scratch/gatoo/HSV1-mouse/output_HSV1_"$name"/accepted_hits.bam
+    echo Finishing mapping "$name"
+    
+    echo Starting cufflinks analysis of "$name"
+    
+cufflinks --num-threads 32 -o /scratch/gatoo/HSV1-mouse/output_cuff_HSV1_"$name" --multi-read-correct -G /scratch/gatoo/HSV1-mouse/HSV1.gff3 /scratch/gatoo/HSV1-mouse/output_HSV1_"$name"/accepted_hits.bam
 cufflinks --num-threads 32 -o /scratch/gatoo/HSV1-mouse/output_cuff_"$name" --frag-bias-correct /scratch/gatoo/Mus_musculus/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa --multi-read-correct -G /scratch/gatoo/Mus_musculus/UCSC/mm10/Annotation/Genes/genes.gtf /scratch/gatoo/HSV1-mouse/output_"$name"/accepted_hits.bam
 
 cp  /scratch/gatoo/HSV1-mouse/output_cuff_"$name"/genes.fpkm_tracking "$name".txt
