@@ -1,0 +1,6 @@
+/scratch/gatoo/HSV1-mouse/output_cuff_Fem-WT/transcripts.gtf
+/scratch/gatoo/HSV1-mouse/output_cuff_Fem-U1/transcripts.gtf
+/scratch/gatoo/HSV1-mouse/output_cuff_Fem-dLAT/transcripts.gtf
+/scratch/gatoo/HSV1-mouse/output_cuff_Male-WT/transcripts.gtf
+/scratch/gatoo/HSV1-mouse/output_cuff_Male-U1/transcripts.gtf
+/scratch/gatoo/HSV1-mouse/output_cuff_Male-dLAT/transcripts.gtf
