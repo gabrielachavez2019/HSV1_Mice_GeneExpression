@@ -113,10 +113,6 @@ DE analysis is done using the DESeq2 Bioconductor package. It takes the merged r
 - <run>_sampletosample_distances.png: heatmap of the sample-to-sample distances.
 - <run>_PCAplot.png: principal component plot of the samples.
 
-#### Variant calling, filtering and annotation
-For the variant calling and filtering, GATK's HaplotypeCaller and VariantFiltration tool is used.
-SnpEff is used to add genetic variant annotation and effect predictions to the vcf.
-In case of human genome data, also the vcf will be annotated with the dbNSFP database using SnpSift.
 
 #### Additional tools
-Please contact Sander Boymans (S.W.Boymans@umcutrecht.nl) if you want to add additional tools/scripts/options.
+Please contact Gabriela Toomer (gabriela.toomer@okstate.edu) if you want to add additional tools/scripts/options or have any questions.
