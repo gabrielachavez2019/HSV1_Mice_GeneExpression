@@ -1,4 +1,4 @@
-# HSV1_Mice_GeneExpression
+# GeneExpression Analysis of the HSV1 infected mice 2021
 This is a repository for gene expression analysis of the RNA-Seq data got by Ilumina from infected mice with HSV1
 
 ## RNA-Seq PIPELINE
