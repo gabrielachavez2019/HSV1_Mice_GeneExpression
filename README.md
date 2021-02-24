@@ -35,10 +35,9 @@ In this case we are using the Human herpesvirus 1 strain Mckrae, available at th
 Get the FASTA file from [HSV1.FASTA](https://www.ncbi.nlm.nih.gov/nuccore/JX142173.1?report=fasta)
 The genome indexes are saved to disk and need only be generated once for each genome/annotation combination.
 
-``  
-
+```  
 bowtie2-build HSV1.FASTA HSV1
-``
+```
 
 ## Usage
 #### Run pipeline
