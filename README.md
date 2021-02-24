@@ -36,6 +36,7 @@ Get the FASTA file from [HSV1.FASTA](https://www.ncbi.nlm.nih.gov/nuccore/JX1421
 The genome indexes are saved to disk and need only be generated once for each genome/annotation combination.
 
 ``  
+
 bowtie2-build HSV1.FASTA HSV1
 ``
 
